@@ -35,29 +35,6 @@ function appendTodo(cart) {
     })
 }
 
-function onDelete(item) {
-    console.log(item.id)
-    fetch(`http://localhost:3004/Books/${item.id}`, {
-        method: "DELETE",
-        // body: JSON.stringify(_data),
-        headers: { "Content-type": "application/json; charset=UTF-8" },
-    })
-        .then((response) =>
-            response.json()
-        )
-        .then((json) =>
-            console.log(json)
-            // refresh()
-        )
-        .catch((err) =>
-            console.log(err)
-        );
-}
-
-function onEdit(item) {
-    console.log(item)
-}
-
 function onFocus() {
     document.getElementById('error-title').innerHTML = '';
     document.getElementById('error-author').innerHTML = '';
@@ -101,4 +78,27 @@ function onSubmit() {
         .catch((err) =>
             console.log(err)
         );
+}
+
+function onDelete(item) {
+    console.log(item.id)
+    fetch(`http://localhost:3004/Books/${item.id}`, {
+        method: "DELETE",
+        // body: JSON.stringify(_data),
+        headers: { "Content-type": "application/json; charset=UTF-8" },
+    })
+        .then((response) =>
+            response.json()
+        )
+        .then((json) =>
+            console.log(json)
+            // refresh()
+        )
+        .catch((err) =>
+            console.log(err)
+        );
+}
+
+function onEdit(item) {
+    console.log(item);
 }
