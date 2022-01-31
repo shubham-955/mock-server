@@ -15,13 +15,13 @@ function refresh() {
 function appendTodo(cart) {
     console.log(cart)
     cart.forEach(function (el) {
-        var div = document.createElement('div')
-        var title = document.createElement('p1')
-        var author = document.createElement('p2')
-        var comments = document.createElement('p3')
-        var div1 = document.createElement('div1')
-        var button1 = document.createElement('button')
-        var button2 = document.createElement('button')
+        let div = document.createElement('div')
+        let title = document.createElement('p1')
+        let author = document.createElement('p2')
+        let comments = document.createElement('p3')
+        let div1 = document.createElement('div1')
+        let button1 = document.createElement('button')
+        let button2 = document.createElement('button')
         title.innerText = "Title : " + el.book;
         author.innerText = "Author : " + el.author;
         comments.innerText = "Comments : " + el.comments;
