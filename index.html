@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .mainContainer {
+        background-color: black;
+    }
+
+    .subContainer {
+        height: 100%;
+        /* margin: 0 100px 0 100px; */
+        background-color: white;
+        padding: 16px 16px 16px 16px;
+    }
+
+    .container {
+        width: 200px;
+        height: 270px;
+        background-color: rgb(206, 171, 106);
+        margin: 16px 16px 16px 16px;
+        display: flex;
+        align-items: center;
+    }
+
+    #book-title {
+        width: 150px;
+        margin: 0px 0 0px 10px;
+        padding: 10px;
+        border: 2px solid black;
+    }
+
+    #book-author {
+        width: 150px;
+        margin: 0px 0 0px 10px;
+        padding: 10px;
+        border: 2px solid black;
+    }
+
+    #book-comments {
+        width: 150px;
+        margin: 0px 0 0px 10px;
+        padding: 10px;
+        border: 2px solid black;
+    }
+
+    #submit {
+        width: 150px;
+        margin: 10px 0 10px 20px;
+        padding: 10px;
+        background-color: black;
+        color: white;
+    }
+
+    #submit:hover {
+        background-color: rgb(63, 55, 55);
+        cursor: pointer;
+    }
+
+    .error {
+        color: red;
+        padding-left: 10px;
+    }
+
+    #card {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        column-gap: 10px;
+        row-gap: 10px;
+    }
+
+    #card div {
+        margin: 10px 10px;
+        width: 200px;
+        height: 150px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 5px;
+        align-items: center;
+        background-color: rgb(206, 171, 106);
+    }
+
+    #card p1 {
+        color: white;
+        font-size: 20px;
+    }
+
+    #card p2 {
+        color: white;
+        font-size: 20px;
+    }
+
+    #card p3 {
+        color: white;
+        font-size: 16px;
+        text-align: center;
+    }
+
+    #card button {
+        margin: 0px 10px;
+        width: 50px;
+        height: 20px;
+    }
+</style>
+
+<body>
+    <div class="mainContainer">
+        <div class="subContainer">
+            <div class="container">
+                <form id="form">
+                    <div style="height: 60px;">
+                        <input type="text" id="book-title" placeholder="Add Title" name="title">
+                        <p id="error-title" class="error"></p>
+                    </div>
+                    <div style="height: 60px;">
+                        <input type="text" id="book-author" placeholder="Add Author" name="status">
+                        <p id="error-author" class="error"></p>
+                    </div>
+                    <div style="height: 60px;">
+                        <input type="text" id="book-comments" placeholder="Add Comments" name="status">
+                        <p id="error-comments" class="error"></p>
+                    </div>
+                    <input type="submit" id="submit" value="Add" onclick="onSubmit()">
+                </form>
+            </div>
+            <div id="card"></div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    refresh();
+    function refresh() {
+        fetch('http://localhost:3004/Books')
+            .then(response =>
+                response.json()
+            )  // convert to json
+            .then(json =>
+                appendTodo(json)
+            )    //print data to console
+            .catch(err =>
+                console.log('Request Failed', err)
+            ); // Catch errors
+    }
+
+    function appendTodo(cart) {
+        console.log(cart)
+        cart.forEach(function (el) {
+            var div = document.createElement('div')
+            var title = document.createElement('p1')
+            var author = document.createElement('p2')
+            var comments = document.createElement('p3')
+            var div1 = document.createElement('div1')
+            var button1 = document.createElement('button')
+            var button2 = document.createElement('button')
+            title.innerText = "Title : " + el.book;
+            author.innerText = "Author : " + el.author;
+            comments.innerText = "Comments : " + el.comments;
+            button1.innerText = "Delete";
+            button2.innerText = "Edit";
+            div1.append(button1, button2);
+            div.append(title, author, comments, div1)
+            card.append(div)
+            button1.onclick
+        })
+    }
+
+    function onFocus() {
+        document.getElementById('error-title').innerHTML = '';
+        document.getElementById('error-author').innerHTML = '';
+        document.getElementById('error-comments').innerHTML = '';
+    }
+
+    function onSubmit() {
+        event.preventDefault();
+        let a = document.getElementById('book-title').value;
+        let b = document.getElementById('book-author').value;
+        let c = document.getElementById('book-comments').value;
+        let _data = {
+            "book": a,
+            "author": b,
+            "comments": c
+        };
+        if (a.length === 0) {
+            document.getElementById('error-title').innerHTML = 'Please enter the title';
+            return;
+        }
+        if (b.length === 0) {
+            document.getElementById('error-title').innerHTML = 'Please enter the author';
+            return;
+        }
+        if (c.length === 0) {
+            document.getElementById('error-title').innerHTML = 'Please enter the comments';
+            return;
+        }
+        fetch("http://localhost:3004/Books", {
+            method: "POST",
+            body: JSON.stringify(_data),
+            headers: { "Content-type": "application/json; charset=UTF-8" },
+        })
+            .then((response) =>
+                response.json()
+            )
+            .then((json) =>
+                console.log(json)
+                // refresh()
+            )
+            .catch((err) =>
+                console.log(err)
+            );
+    }
+</script>

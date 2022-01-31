@@ -1,0 +1,40 @@
+{
+  "Books": [
+    {
+      "id": 1,
+      "book": "Harry Potter",
+      "author": "JK Rowling",
+      "comments": [
+        "Nice Book",
+        "Epic Story"
+      ]
+    },
+    {
+      "id": 2,
+      "book": "Spider-man part 5",
+      "author": "JK Rowling",
+      "comments": [
+        "Nice Book",
+        "Epic Story"
+      ]
+    },
+    {
+      "book": "Avengers",
+      "author": "Marvel",
+      "comments": "Action Stroies",
+      "id": 3
+    },
+    {
+      "book": "Bhagvat-Gita",
+      "author": "Krishna",
+      "comments": "Legendary",
+      "id": 4
+    },
+    {
+      "book": "The wings of fire",
+      "author": "Abdul Kalam",
+      "comments": "Inspirational",
+      "id": 5
+    }
+  ]
+}
