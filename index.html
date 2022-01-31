@@ -173,8 +173,32 @@
             div1.append(button1, button2);
             div.append(title, author, comments, div1)
             card.append(div)
-            button1.onclick
+            button1.onclick = function () { onDelete(el) };
+            button2.onclick = function () { onEdit(el) };
         })
+    }
+
+    function onDelete(item) {
+        console.log(item.id)
+        fetch(`http://localhost:3004/Books/${item.id}`, {
+            method: "DELETE",
+            // body: JSON.stringify(_data),
+            headers: { "Content-type": "application/json; charset=UTF-8" },
+        })
+            .then((response) =>
+                response.json()
+            )
+            .then((json) =>
+                console.log(json)
+                // refresh()
+            )
+            .catch((err) =>
+                console.log(err)
+            );
+    }
+
+    function onEdit(item) {
+        console.log(item)
     }
 
     function onFocus() {

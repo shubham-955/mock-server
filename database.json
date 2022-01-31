@@ -19,22 +19,10 @@
       ]
     },
     {
-      "book": "Avengers",
-      "author": "Marvel",
-      "comments": "Action Stroies",
-      "id": 3
-    },
-    {
       "book": "Bhagvat-Gita",
       "author": "Krishna",
       "comments": "Legendary",
       "id": 4
-    },
-    {
-      "book": "The wings of fire",
-      "author": "Abdul Kalam",
-      "comments": "Inspirational",
-      "id": 5
     }
   ]
 }
