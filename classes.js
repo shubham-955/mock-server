@@ -18,7 +18,7 @@ class Sqaure extends Rectangle {
     }
 
 }
-var edge = 8;
+var edge = 10;
 
 
 var square = new Sqaure(edge);
